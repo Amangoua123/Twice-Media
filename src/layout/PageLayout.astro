@@ -12,11 +12,11 @@ import Footer from "../components/Footer.astro";
 <html>
   <meta name="description" content="Site by AMANGOUA" />
   <title>{title} - Site by Amangoua</title>
-  <body data-barba="wrapper" class="invisible">
+  <body data-barba="wrapper">
     <Header />
     <LoadingScreen />
     <PageTransition />
-    <main data-barba="container" data-barba-namespace="home" class="bg-black">
+    <main data-barba="container" data-barba-namespace="home" class="z-0">
       <slot />
     </main>
     <Footer />

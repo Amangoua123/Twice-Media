@@ -45,7 +45,7 @@ const menuItems = [
 
   <!-- FIXED MENU BTN -->
   <div
-    class="w-24 h-10 bg-gray border border-white fixed -translate-x-1/2 left-1/2 bottom-10 flex items-center justify-between p-0.5 rounded-xs overflow-hidden"
+    class="link w-24 h-10 bg-gray border border-white fixed -translate-x-1/2 left-1/2 bottom-10 flex items-center justify-between p-0.5 rounded-xs overflow-hidden"
   >
     <div
       class="w-10 h-full bg-black p-2.5 flex flex-col gap-1 justify-center rounded-xs"
@@ -55,9 +55,14 @@ const menuItems = [
       <span class="bars w-full h-0.5 bg-amber-300 inline-block"></span>
     </div>
     <div
-      class="items-center flex-1 uppercase text-xl tracking-wide flex justify-center"
+      class="items-center flex-1 uppercase text-xs tracking-wide flex justify-center"
     >
-      <div class="font-formula">menu</div>
+      <button class="menu relative inline-block overflow-hidden">
+        <span class="original block">menu</span>
+        <span class="duplicate absolute top-full left-0 block text-black">
+          menu
+        </span>
+      </button>
     </div>
   </div>
 </header>

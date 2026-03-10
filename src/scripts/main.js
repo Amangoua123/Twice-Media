@@ -8,67 +8,68 @@ const select = (el) => document.querySelector(el);
 const selectAll = (el) => document.querySelectorAll(el);
 
 // Links
-const Links = selectAll(".link");
-Links.forEach((link) => {
-  const original = link.querySelector(".original");
-  const duplicate = link.querySelector(".duplicate");
+function initLink() {
+  const Links = selectAll(".link");
+  Links.forEach((link) => {
+    const original = link.querySelector(".original");
+    const duplicate = link.querySelector(".duplicate");
+    link.addEventListener("mouseenter", () => {
+      const tl = gsap.timeline({
+        defaults: { duration: 0.3, ease: "power2.inOut" },
+      });
 
-  link.addEventListener("mouseenter", () => {
-    const tl = gsap.timeline({
-      defaults: { duration: 0.3, ease: "power2.inOut" },
+      tl.fromTo(
+        original,
+        {
+          rotate: 0,
+          yPercent: 0,
+        },
+        { rotate: -25, yPercent: -100 },
+        0,
+      );
+
+      tl.fromTo(
+        duplicate,
+        {
+          rotate: -25,
+          yPercent: 0,
+        },
+        {
+          rotate: 0,
+          yPercent: -100,
+        },
+        0,
+      );
+      tl.fromTo(
+        link,
+        {
+          "--translateX": "-100%",
+          duration: 0.5,
+        },
+        { "--translateX": 0 },
+        0,
+      );
     });
 
-    tl.fromTo(
-      original,
-      {
-        rotate: 0,
-        yPercent: 0,
-      },
-      { rotate: -25, yPercent: -100 },
-      0,
-    );
+    link.addEventListener("mouseleave", () => {
+      const tl = gsap.timeline({
+        defaults: { duration: 0.3, ease: "power2.inOut" },
+      });
 
-    tl.fromTo(
-      duplicate,
-      {
-        rotate: -25,
-        yPercent: 0,
-      },
-      {
-        rotate: 0,
-        yPercent: -100,
-      },
-      0,
-    );
-    tl.fromTo(
-      link,
-      {
-        "--translateX": "-100%",
-        duration: 0.5,
-      },
-      { "--translateX": 0 },
-      0,
-    );
-  });
+      tl.to(original, { rotate: 0, yPercent: 0 }, 0);
 
-  link.addEventListener("mouseleave", () => {
-    const tl = gsap.timeline({
-      defaults: { duration: 0.3, ease: "power2.inOut" },
+      tl.to(duplicate, { rotate: -25, yPercent: 0 }, 0);
+      tl.to(
+        link,
+        {
+          "--translateX": "100%",
+          duration: 0.5,
+        },
+        0,
+      );
     });
-
-    tl.to(original, { rotate: 0, yPercent: 0 }, 0);
-
-    tl.to(duplicate, { rotate: -25, yPercent: 0 }, 0);
-    tl.to(
-      link,
-      {
-        "--translateX": "100%",
-        duration: 0.5,
-      },
-      0,
-    );
   });
-});
+}
 
 // Lenis Scroll
 // Initialize Lenis
@@ -79,21 +80,20 @@ const lenis = new Lenis({
 // SplitText Func
 
 function initSplittext() {
-  SplitText.create(".text-top", {
-    type: "chars",
-    charsClass: "preloader-chars",
+  SplitText.create(".split-text", {
+    type: "words, lines",
+    wordsClass: "single-word",
   });
 }
 
-// Scroll
-if (history.scrollRestoration) {
-  history.scrollRestoration = "manual";
-}
-
+// SCROLL
 barba.hooks.leave(() => {
   lenis.scrollTo(0, { immediate: true });
 });
-// Init Loader
+
+barba.hooks.afterEnter(() => {
+  initLink();
+});
 
 function initLoader() {
   const tl = gsap.timeline();
@@ -103,6 +103,10 @@ function initLoader() {
   });
   tl.set(".text-top", {
     clipPath: "inset(0% 100% 0% 0%)",
+  });
+
+  tl.set("main", {
+    autoAlpha: 1,
   });
 
   tl.set(".loadingContainer", {
@@ -122,10 +126,6 @@ function initLoader() {
     rotate: 6,
     scaleX: 1.45,
     scaleY: 1.05,
-  });
-
-  tl.set("body", {
-    autoAlpha: 1,
   });
 
   tl.to(".loadingContainer .title", {
@@ -207,6 +207,7 @@ function initLoader() {
     },
     "< 0.5",
   );
+
   tl.to(
     "html",
     {
@@ -218,10 +219,22 @@ function initLoader() {
   tl.to(
     ".loadingContainer, .transitionContainer",
     {
-      yPercent: -100,
+      yPercent: 100,
     },
     ">",
   );
+}
+
+function pageEnter(container) {
+  const tl = gsap.timeline();
+
+  tl.set(".transitionContainer", {
+    yPercent: 0,
+  }).to(".transition-screen", {
+    yPercent: 0,
+  });
+
+  return tl;
 }
 
 function initScripts() {
@@ -229,16 +242,33 @@ function initScripts() {
   initSplittext();
 }
 
+// BARBA JS CODE
+barba.init({
+  debug: true,
+  sync: true,
+  transitions: [
+    {
+      name: "default",
+      once() {
+        initScripts();
+      },
+      leave({ current }) {
+        pageEnter(current.container);
+      },
+      enter() {},
+      beforeEnter() {},
+    },
+    {
+      name: "self",
+      leave() {},
+      enter() {},
+      beforeEnter() {},
+    },
+  ],
+});
+
 window.addEventListener("DOMContentLoaded", () => {
   document.fonts.ready.then(() => {
     initScripts();
-
-    console.log("All fonts loaded");
   });
-});
-
-// BARBA JS CODE
-
-barba.init({
-  // ...
 });

@@ -1,0 +1,38 @@
+{
+  "name": "twicemedia",
+  "version": "1.0.0",
+  "description": "This site has been built with Astro JS and TailwindCSS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amangoua123/Twice-Media.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Amangoua123/Twice-Media/issues"
+  },
+  "homepage": "https://github.com/Amangoua123/Twice-Media#readme",
+  "dependencies": {
+    "@astrojs/react": "^5.0.0",
+    "@barba/core": "^2.10.3",
+    "@tailwindcss/vite": "^4.2.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^5.18.0",
+    "gsap": "^3.14.2",
+    "lenis": "^1.3.18",
+    "motion": "^12.35.2",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "tailwindcss": "^4.2.1"
+  }
+}

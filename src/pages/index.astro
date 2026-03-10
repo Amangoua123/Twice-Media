@@ -1,0 +1,92 @@
+---
+import { Image } from "astro:assets";
+import PageLayout from "../layout/PageLayout.astro";
+
+import Home2 from "../assets/images/home2.webp";
+---
+
+<PageLayout title="Accueil">
+  <section
+    class="min-h-[120vh] bg-gray-700 bg-blend-soft-light flex justify-center flex-col items-center bg-[url(../assets/images/home.webp)] bg-bottom text-white"
+  >
+    <div class="max-w-4xl text-center mt-24">
+      <h1 class="heading1">the best stories deserve to be told</h1>
+    </div>
+
+    <div class="flex justify-between w-full max-w-7xl mt-10">
+      <div class="flex justify-cente flex-col items-center">
+        <h6 class="heading6 text-gray">Twice Agency</h6>
+        <h5 class="heading5">Chasing the elements</h5>
+      </div>
+      <div class="flex justify-cente flex-col items-center">
+        <h6 class="heading6 text-gray">Since 2022</h6>
+        <h5 class="heading5">Working globally</h5>
+      </div>
+    </div>
+  </section>
+  <section class="bg-black min-h-screen">
+    <div class="flex flex-col justify-center items-center gap-16 w-full py-30">
+      <div class="flex-col flex justify-center items-center">
+        <h2
+          class="heading3 text-white relative after:content-['agency'] after:absolute after:-left-20 after:text-gray3 after:text-xl after:top-0"
+        >
+          Marketing & Audiovisual
+        </h2>
+        <h2
+          class="heading3 text-gray4 flex gap-10 relative after:content-['services'] after:absolute after:-left-20 after:text-gray3 after:text-xl after:top-0"
+        >
+          <span class="block"> Audiovisual </span>
+          <span class="block"> Creativity </span>
+          <span class="block"> User </span>
+          <span class="block"> Experience </span>
+        </h2>
+        <h2 class="heading3 text-gray4 flex gap-10">
+          <span class="block"> Digital Marketing </span>
+          <span class="block"> Graphic Design </span>
+          <span
+            class="block ml-20 relative after:content-['location'] after:absolute after:-left-20 after:text-gray3 after:text-xl after:top-0"
+          >
+            Madrid, Spain
+          </span>
+        </h2>
+      </div>
+      <div class="flex gap-10 justify-center items-center">
+        <Image src={Home2} alt="Home" height={350} />
+        <div class="max-w-xs flex flex-col justify-center items-start gap-5">
+          <p class="text-gray4">
+            Our talented team is capable of tackling challenges of all kinds
+          </p>
+          <div
+            class="w-fit link relative h-10 bg-gray border border-white flex items-center justify-between p-0.5 overflow-hidden"
+          >
+            <div class="w-10 h-full bg-black relative">
+              <span
+                class="text-amber-300 text-5xl absolute border border-white -translate-1/2 left-1/2 top-1/2 leading-none"
+              >
+              </span>
+            </div>
+            <div
+              class="items-center mx-4 uppercase text-xl tracking-wide flex justify-center"
+            >
+              <a
+                href="/services"
+                class="btn relative inline-block overflow-hidden"
+              >
+                <span class="original block">our services</span>
+                <span
+                  class="duplicate absolute top-full left-0 block text-black"
+                >
+                  our services
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2 class="heading1 text-white">Redefining</h2>
+        <h2 class="heading1 text-white">Golf Style</h2>
+      </div>
+    </div>
+  </section>
+</PageLayout>

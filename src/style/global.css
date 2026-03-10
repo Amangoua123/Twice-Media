@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+body {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  line-height: 1.5;
+  overflow: hidden;
+  position: relative;
+}
+
+p {
+  font-family: "NHaasGrotesk", sans-serif;
+  line-height: 1.5;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+@font-face {
+  font-family: "Formula";
+  src: url("../fonts/FormulaCondensed.woff2"), format("woff2");
+  font-style: normal;
+  font-display: swap;
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "NHaasGrotesk";
+  src: url("../fonts/NHaasGrotesk.woff2"), format("woff2");
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-gray: #c0cac9;
+  --color-gray2: #343434;
+  --color-gray3: #c0cbcb;
+  --color-gray4: #c0cac9;
+  --scaleX: 0;
+  --translateX: -100%;
+
+  --font-formula: "Formula", sans-serif;
+  --font-NH: "NHaasGrotesk", sans-serif;
+  --track-sm: 0.05rem;
+  --track-md: 0.1rem;
+  --track-lg: 0.15rem;
+}
+
+@layer components {
+  /* HEADER */
+  .max-w-8xl {
+    max-width: 88rem;
+    margin: auto;
+  }
+
+  .menu {
+    font-family: "Formula", sans-serif;
+    line-height: 1;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    letter-spacing: 0.05rem;
+    position: relative;
+  }
+
+  .btn {
+    font-size: 1.2rem;
+    font-family: "Formula", sans-serif;
+    line-height: 1;
+  }
+  .link.active {
+    position: relative;
+  }
+
+  .link.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    background-color: var(--color-gray);
+    width: 100%;
+    transform: translateX(var(--translateX));
+    transform-origin: left;
+  }
+  .link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    background-color: var(--color-gray);
+    width: 100%;
+    transform: translateX(var(--translateX));
+    transform-origin: left;
+  }
+
+  .link:hover::after {
+    background-color: white;
+  }
+
+  .logo {
+    font-size: 3rem;
+  }
+
+  .link .duplicate {
+    transform: rotate(-25deg);
+    transform-origin: right;
+  }
+
+  .link .original {
+    transform-origin: left;
+  }
+
+  /* PAGES */
+
+  .heading1,
+  .heading2,
+  .heading3,
+  .heading4,
+  .heading5,
+  .heading6,
+  .bigHeading {
+    font-family: "Formula", sans-serif;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: 0.05rem;
+  }
+
+  .bigHeading {
+    font-size: clamp(10em, 5vw, 9rem);
+  }
+  .heading1 {
+    font-size: clamp(9em, 5vw, 8rem);
+  }
+
+  .heading2 {
+    font-size: clamp(5em, 4vw, 5rem);
+  }
+
+  .heading3 {
+    font-size: clamp(4em, 4vw, 4.5rem);
+  }
+
+  .heading5 {
+    font-size: clamp(1rem, 2vw, 1.75rem);
+  }
+  .heading6 {
+    font-size: clamp(1rem, 2vw, 1.05rem);
+  }
+
+  /* Loading Screen */
+  .loadingContainer .text-top {
+    position: relative;
+    color: var(--color-gray);
+    transform-origin: left;
+    --scaleX: 0;
+  }
+
+  .loadingContainer .line::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    height: 5px;
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    transform-origin: left;
+  }
+
+  .loadingContainer .line::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    height: 5px;
+    background-color: white;
+    width: 100%;
+    transform-origin: left;
+    transform: scaleX(var(--scaleX));
+    transform-origin: left;
+  }
+}

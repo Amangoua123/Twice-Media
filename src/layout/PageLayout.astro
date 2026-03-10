@@ -1,0 +1,25 @@
+---
+import "../style/global.css";
+import "lenis/dist/lenis.css";
+const { title } = Astro.props;
+// Components
+import Header from "../components/Header.astro";
+import LoadingScreen from "../components/LoadingScreen.astro";
+import PageTransition from "../components/PageTransition.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<html>
+  <meta name="description" content="Site by AMANGOUA" />
+  <title>{title} - Site by Amangoua</title>
+  <body data-barba="wrapper" class="invisible">
+    <Header />
+    <LoadingScreen />
+    <PageTransition />
+    <main data-barba="container" data-barba-namespace="home" class="bg-black">
+      <slot />
+    </main>
+    <Footer />
+    <script src="../scripts/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+---
+const menuItems = [
+  { name: "work", url: "/work" },
+  { name: "services", url: "/services" },
+  { name: "about", url: "/about" },
+  { name: "contact", url: "/contact" },
+];
+---
+
+<header class="fixed inset-0 h-1 w-full z-3 invisible">
+  <nav
+    class="menu grid grid-cols-5 h-full text-gray items-center justify-center w-full max-w-8xl my-2"
+  >
+    {
+      menuItems.slice(0, 2).map((link) => (
+        <div class="text-left">
+          <a
+            href={link.url}
+            class="link menu relative inline-block overflow-hidden"
+          >
+            <span class="original block">{link.name}</span>
+            <span class="duplicate absolute top-full left-0 block text-white">
+              {link.name}
+            </span>
+          </a>
+        </div>
+      ))
+    }
+    <div class="logo text-center">
+      <a href="/">twice</a>
+    </div>
+    {
+      menuItems.slice(2, 4).map((link) => (
+        <div class="text-right">
+          <a href={link.url} class="link relative inline-block overflow-hidden">
+            <span class="original block">{link.name}</span>
+            <span class="duplicate absolute top-full left-0 block text-white">
+              {link.name}
+            </span>
+          </a>
+        </div>
+      ))
+    }
+  </nav>
+
+  <!-- FIXED MENU BTN -->
+  <div
+    class="w-24 h-10 bg-gray border border-white fixed -translate-x-1/2 left-1/2 bottom-10 flex items-center justify-between p-0.5 rounded-xs overflow-hidden"
+  >
+    <div
+      class="w-10 h-full bg-black p-2.5 flex flex-col gap-1 justify-center rounded-xs"
+    >
+      <span class="bars w-full h-0.5 bg-amber-300 inline-block"></span>
+      <span class="bars w-full h-0.5 bg-amber-300 inline-block"></span>
+      <span class="bars w-full h-0.5 bg-amber-300 inline-block"></span>
+    </div>
+    <div
+      class="items-center flex-1 uppercase text-xl tracking-wide flex justify-center"
+    >
+      <div class="font-formula">menu</div>
+    </div>
+  </div>
+</header>
